@@ -1,0 +1,20 @@
+---
+- include: install.yml
+  become: true
+  tags:
+    - prometheus_install
+
+- include: configure.yml
+  become: true
+  tags:
+    - prometheus_configure
+
+- name: ensure prometheus service is started and enabled
+  become: true
+  systemd:
+    daemon_reload: true
+    name: prometheus
+    state: started
+    enabled: true
+  tags:
+    - prometheus_run

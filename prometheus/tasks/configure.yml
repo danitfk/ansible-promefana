@@ -1,0 +1,34 @@
+---
+- name: Generate k8s alerting rules file
+  template:
+    src: "k8s.rules.j2"
+    dest: "{{ prometheus_config_dir }}/k8s.rules"
+    owner: root
+    group: prometheus
+    mode: 0640
+    validate: "{{ prometheus_binary_install_dir }}/promtool check rules %s"
+  notify:
+    - reload prometheus
+
+- name: Generate nodeExporter alerting rules file
+  template:
+    src: "nodeExporter.rules.j2"
+    dest: "{{ prometheus_config_dir }}/nodeExporter.rules"
+    owner: root
+    group: prometheus
+    mode: 0640
+    validate: "{{ prometheus_binary_install_dir }}/promtool check rules %s"
+  notify:
+    - reload prometheus
+
+- name: Generate configuration file of prometheus
+  template:
+    src: prometheus.yml.j2
+    dest: "{{ prometheus_config_dir }}/prometheus.yml"
+    force: true
+    owner: root
+    group: prometheus
+    mode: 0640
+    validate: "{{ prometheus_binary_install_dir }}/promtool check config %s"
+  notify:
+    - reload prometheus
