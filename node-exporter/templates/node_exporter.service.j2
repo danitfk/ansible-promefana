@@ -29,23 +29,10 @@ ExecStart={{ _node_exporter_binary_install_dir }}/node_exporter \
 SyslogIdentifier=node_exporter
 Restart=always
 RestartSec=1
-
 PrivateTmp=yes
-{% for m in ansible_mounts if m.mount == '/home' %}
-ProtectHome=read-only
-{% else %}
 ProtectHome=yes
-{% endfor %}
 NoNewPrivileges=yes
-
-{% if node_exporter_systemd_version | int >= 232 %}
-ProtectSystem=strict
-ProtectControlGroups=true
-ProtectKernelModules=true
-ProtectKernelTunables=yes
-{% else %}
 ProtectSystem=full
-{% endif %}
 
 [Install]
 WantedBy=multi-user.target
