@@ -36,8 +36,8 @@
   become: false
   get_url:
     url: "{{ prometheus_download_url }}"
-    url_username: "{{ repo_user }}"
-    url_password: "{{ repo_password }}"
+    # url_username: "{{ repo_user }}"
+    # url_password: "{{ repo_password }}"
     dest: "/tmp/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
 
 - name: unpack prometheus binaries
