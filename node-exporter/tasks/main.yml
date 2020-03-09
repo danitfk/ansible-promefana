@@ -4,6 +4,15 @@
     path: "{{ _node_exporter_binary_install_dir }}/node_exporter"
   register: __node_exporter_is_installed
 
+- name: Gather currently installed node_exporter version (if any)
+  command: "{{ _node_exporter_binary_install_dir }}/node_exporter --version"
+  args:
+    warn: false
+  changed_when: false
+  register: __node_exporter_current_version_output
+  check_mode: false
+  when: __node_exporter_is_installed.stat.exists
+
 - import_tasks: install.yml
   become: true
   when: (not __node_exporter_is_installed.stat.exists) or (__node_exporter_current_version_output.stderr_lines[0].split(" ")[2] != node_exporter_version)
