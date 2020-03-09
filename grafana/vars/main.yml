@@ -32,17 +32,17 @@ grafana_users:
   allow_sign_up: false
   auto_assign_org_role: Viewer
   default_theme: dark
-grafana_auth:
-  disable_login_form: false
-  oauth_auto_login: false
-  disable_signout_menu: false
-  signout_redirect_url: ""
-  anonymous:
-    org_name: "Main Organization"
-    org_role: Viewer
-  ldap:
-    config_file: "/etc/grafana/ldap.toml"
-    allow_sign_up: false
+grafana_auth: {}
+#  disable_login_form: false
+#  oauth_auto_login: false
+#  disable_signout_menu: false
+#  signout_redirect_url: ""
+#  anonymous:
+#    org_name: "Main Organization"
+#    org_role: Viewer
+#  ldap:
+#    config_file: "/etc/grafana/ldap.toml"
+#    allow_sign_up: false
 grafana_ldap: {}
 #  verbose_logging: false
 #  servers:
