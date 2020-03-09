@@ -1,0 +1,106 @@
+grafana_version: latest
+grafana_yum_repo_template: etc/yum.repos.d/grafana.repo.j2
+grafana_use_provisioning: true
+grafana_provisioning_synced: false
+grafana_instance: "{{ ansible_fqdn | default(ansible_host) | default(inventory_hostname) }}"
+grafana_logs_dir: "/var/log/grafana"
+grafana_data_dir: "/var/lib/grafana"
+grafana_address: "0.0.0.0"
+grafana_port: 3000
+grafana_cap_net_bind_service: false
+grafana_url: "http://{{ grafana_address }}:{{ grafana_port }}"
+grafana_api_url: "{{ grafana_url }}"
+grafana_domain: "{{ ansible_fqdn | default(ansible_host) | default('localhost') }}"
+grafana_server:
+  protocol: http
+  enforce_domain: false
+  socket: ""
+  cert_key: ""
+  cert_file: ""
+  enable_gzip: false
+  static_root_path: public
+  router_logging: false
+  serve_from_sub_path: false
+grafana_security:
+  admin_user: admin
+  admin_password: ""
+grafana_database:
+  type: sqlite3
+grafana_remote_cache: {}
+grafana_welcome_email_on_sign_up: false
+grafana_users:
+  allow_sign_up: false
+  auto_assign_org_role: Viewer
+  default_theme: dark
+grafana_auth:
+  disable_login_form: false
+  oauth_auto_login: false
+  disable_signout_menu: false
+  signout_redirect_url: ""
+  anonymous:
+    org_name: "Main Organization"
+    org_role: Viewer
+  ldap:
+    config_file: "/etc/grafana/ldap.toml"
+    allow_sign_up: false
+grafana_ldap: {}
+#  verbose_logging: false
+#  servers:
+#    host: 127.0.0.1
+#    port: 389 # 636 for SSL
+#    use_ssl: false
+#    start_tls: false
+#    ssl_skip_verify: false
+#    root_ca_cert: /path/to/certificate.crt
+#    bind_dn: "cn=admin,dc=grafana,dc=org"
+#    bind_password: grafana
+#    search_filter: "(cn=%s)" # "(sAMAccountName=%s)" on AD
+#    search_base_dns:
+#      - "dc=grafana,dc=org"
+#    group_search_filter: "(&(objectClass=posixGroup)(memberUid=%s))"
+#    group_search_base_dns:
+#      - "ou=groups,dc=grafana,dc=org"
+#    attributes:
+#      name: givenName
+#      surname: sn
+#      username: sAMAccountName
+#      member_of: memberOf
+#      email: mail
+#  group_mappings:
+#    - name: Main Org.
+#      id: 1
+#      groups:
+#        - group_dn: "cn=admins,ou=groups,dc=grafana,dc=org"
+#          org_role: Admin
+#        - group_dn: "cn=editors,ou=groups,dc=grafana,dc=org"
+#          org_role: Editor
+#        - group_dn: "*"
+#          org_role: Viewer
+#    - name: Alternative Org
+#      id: 2
+#      groups:
+#        - group_dn: "cn=alternative_admins,ou=groups,dc=grafana,dc=org"
+#          org_role: Admin
+grafana_session: {}
+grafana_analytics: {}
+grafana_smtp: {}
+grafana_alerting:
+  execute_alerts: true
+grafana_log:
+grafana_metrics: {}
+grafana_tracing: {}
+grafana_snapshots: {}
+grafana_image_storage: {}
+grafana_plugins: []
+grafana_dashboards: []
+grafana_dashboards_dir: "dashboards"
+grafana_alert_notifications: []
+grafana_datasources: []
+grafana_api_keys: []
+grafana_api_keys_dir: "{{ lookup('env', 'HOME') }}/grafana/keys"
+grafana_environment: {}
+grafana_panels: {}
+grafana_package: "grafana{{ (grafana_version != 'latest') | ternary('-' ~ grafana_version, '') }}"
+# https://unix.stackexchange.com/questions/534463/cant-enable-grafana-on-boot-in-fedora-because-systemd-sysv-install-missing
+grafana_dependencies:
+  - chkconfig

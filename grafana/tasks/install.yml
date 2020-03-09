@@ -1,0 +1,23 @@
+---
+- name: Remove conflicting grafana packages
+  package:
+    name: grafana-data
+    state: absent
+  register: _old_grafana_pkgs
+
+- name: Add Grafana repository file
+  template:
+    src: "{{ grafana_yum_repo_template }}"
+    dest: "/etc/yum.repos.d/{{ grafana_yum_repo_template | basename | regex_replace('\\.j2$', '') }}"
+    force: true
+    backup: true
+
+- name: Install Grafana
+  package:
+    name: "{{ grafana_package }}"
+    state: "{{ (grafana_version == 'latest') | ternary('latest', 'present') }}"
+  register: _install_packages
+  until: _install_packages is succeeded
+  retries: 5
+  delay: 2
+  notify: restart grafana
