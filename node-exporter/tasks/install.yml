@@ -43,11 +43,3 @@
     group: root
   notify: restart node_exporter
 
-- name: propagate locally distributed node_exporter binary
-  copy:
-    src: "{{ node_exporter_binary_local_dir }}/node_exporter"
-    dest: "{{ _node_exporter_binary_install_dir }}/node_exporter"
-    mode: 0755
-    owner: root
-    group: root
-  notify: restart node_exporter
