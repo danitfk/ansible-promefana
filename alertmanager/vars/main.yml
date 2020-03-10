@@ -1,0 +1,64 @@
+---
+alertmanager_version: 0.20.0
+alertmanager_binary_local_dir: ''
+binary_url: https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz
+alertmanager_config_dir: /etc/alertmanager
+alertmanager_db_dir: /var/lib/alertmanager
+
+alertmanager_config_file: 'alertmanager.yml.j2'
+
+alertmanager_template_files:
+  - templates/*.tmpl
+
+alertmanager_web_listen_address: '0.0.0.0:9093'
+alertmanager_web_external_url: 'http://localhost:9093/'
+
+alertmanager_http_config: {}
+
+alertmanager_resolve_timeout: 3m
+
+alertmanager_config_flags_extra: {}
+# alertmanager_config_flags_extra:
+#   data.retention: 10
+
+# SMTP default params
+alertmanager_smtp: {}
+# alertmanager_smtp:
+#   from: ''
+#   smarthost: ''
+#   auth_username: ''
+#   auth_password: ''
+#   auth_secret: ''
+#   auth_identity: ''
+#   require_tls: "True"
+
+# Default values you can see here -> https://prometheus.io/docs/alerting/configuration/
+alertmanager_slack_api_url: ''
+
+alertmanager_receivers: []
+# alertmanager_receivers:
+#   - name: slack
+#     slack_configs:
+#       - send_resolved: true
+#         channel: '#alerts'
+
+alertmanager_inhibit_rules: []
+# alertmanager_inhibit_rules:
+#   - target_match:
+#       label: value
+#     source_match:
+#       label: value
+#     equal: ['dc', 'rack']
+#   - target_match_re:
+#       label: value1|value2
+#     source_match_re:
+#       label: value3|value5
+
+alertmanager_route: {}
+# alertmanager_route:
+#   group_by: ['alertname', 'cluster', 'service']
+#   group_wait: 30s
+#   group_interval: 5m
+#   repeat_interval: 4h
+#   receiver: slack
+
