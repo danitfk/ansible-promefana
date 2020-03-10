@@ -9,7 +9,7 @@
     mode: 0644
     validate: "/usr/local/bin/amtool --alertmanager.url=  check-config %s"
   notify:
-    - reload alertmanager
+    - restart alertmanager
 
 - name: create systemd service unit
   template:
@@ -31,4 +31,4 @@
     mode: 0644
   with_fileglob: "{{ alertmanager_template_files }}"
   notify:
-    - reload alertmanager
+    - restart alertmanager
