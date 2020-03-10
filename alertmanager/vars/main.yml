@@ -14,5 +14,5 @@ alertmanager_web_listen_address: '0.0.0.0:9093'
 alertmanager_web_external_url: 'http://localhost:9093/'
 
 alertmanager_http_config: {}
-alertmanager_slack_api_url: 'https://hooks.slack.com/services/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'
+alertmanager_slack_api_url: ''
 alertmanager_slack_channel_name: '#prometheus-alerts'
