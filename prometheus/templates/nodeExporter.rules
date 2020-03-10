@@ -1,4 +1,3 @@
-{{ ansible_managed | comment }}
 {% raw %}
 groups:
 - name: nodeExporter optimized rules
@@ -101,4 +100,3 @@ groups:
     annotations:
       summary: "SystemD service crashed (instance {{ $labels.instance }})"
       description: "SystemD service crashed\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-{% endraw %}
