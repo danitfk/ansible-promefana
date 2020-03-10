@@ -3,6 +3,7 @@ prometheus_version: 2.16.0
 prometheus_config_dir: /etc/prometheus
 prometheus_db_dir: /data/prometheus
 prometheus_web_listen_address: "0.0.0.0:9090"
+prometheus_alertmanager_address: "127.0.0.1:9093"
 prometheus_web_external_url: ''
 prometheus_storage_retention: "30d"
 prometheus_metrics_path: "/metrics"
