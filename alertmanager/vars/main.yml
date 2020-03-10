@@ -14,51 +14,5 @@ alertmanager_web_listen_address: '0.0.0.0:9093'
 alertmanager_web_external_url: 'http://localhost:9093/'
 
 alertmanager_http_config: {}
-
-alertmanager_resolve_timeout: 3m
-
-alertmanager_config_flags_extra: {}
-# alertmanager_config_flags_extra:
-#   data.retention: 10
-
-# SMTP default params
-alertmanager_smtp: {}
-# alertmanager_smtp:
-#   from: ''
-#   smarthost: ''
-#   auth_username: ''
-#   auth_password: ''
-#   auth_secret: ''
-#   auth_identity: ''
-#   require_tls: "True"
-
-# Default values you can see here -> https://prometheus.io/docs/alerting/configuration/
-alertmanager_slack_api_url: ''
-
-alertmanager_receivers: []
-# alertmanager_receivers:
-#   - name: slack
-#     slack_configs:
-#       - send_resolved: true
-#         channel: '#alerts'
-
-alertmanager_inhibit_rules: []
-# alertmanager_inhibit_rules:
-#   - target_match:
-#       label: value
-#     source_match:
-#       label: value
-#     equal: ['dc', 'rack']
-#   - target_match_re:
-#       label: value1|value2
-#     source_match_re:
-#       label: value3|value5
-
-alertmanager_route: {}
-# alertmanager_route:
-#   group_by: ['alertname', 'cluster', 'service']
-#   group_wait: 30s
-#   group_interval: 5m
-#   repeat_interval: 4h
-#   receiver: slack
-
+alertmanager_slack_api_url: 'https://hooks.slack.com/services/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'
+alertmanager_slack_channel_name: '#prometheus-alerts'
