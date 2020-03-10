@@ -1,4 +1,3 @@
-{% raw %}
 groups:
 - name: nodeExporter optimized rules
   rules:

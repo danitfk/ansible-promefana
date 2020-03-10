@@ -13,6 +13,7 @@ Group=alertmanager
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStart=/usr/local/bin/alertmanager \
   --config.file={{ alertmanager_config_dir }}/alertmanager.yml \
+  --cluster.advertise-address=127.0.0.1:9093 \
   --storage.path={{ alertmanager_db_dir }} \
   --web.listen-address={{ alertmanager_web_listen_address }} \
   --web.external-url={{ alertmanager_web_external_url }}
