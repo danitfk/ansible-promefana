@@ -18,5 +18,3 @@
     enabled: true
   tags:
     - alertmanager_run
-
-- meta: flush_handlers

@@ -30,8 +30,6 @@
   get_url:
     url: "{{ binary_url }}"
     dest: "/tmp/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz"
-  retries: 5
-  delay: 2
 
 - name: unpack alertmanager binaries
   become: false
@@ -63,6 +61,5 @@
   with_items:
     - alertmanager
     - amtool
-  when: alertmanager_binary_local_dir | length > 0
   notify:
     - restart alertmanager

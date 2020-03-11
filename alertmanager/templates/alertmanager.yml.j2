@@ -4,19 +4,16 @@ templates:
 - '/etc/alertmanager/templates/*.tmpl'
 route:
   receiver: slack
-  group_by: ['alertname', 'priority']
+  group_by: ['alertname', 'service', 'priority']
   group_wait: 10s
   repeat_interval: 30m
   routes:
     - receiver: slack
-    # Send severity=slack alerts to slack.
-      match:
-        channel: slack
       group_wait: 10s
       repeat_interval: 1m
 
 receivers:
 - name: slack
   slack_configs:
-  - api_url: {{ alertmanager_slack_api_url }}
+  - api_url: "{{ alertmanager_slack_api_url }}"
     channel: "{{ alertmanager_slack_channel_name }}"
