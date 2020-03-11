@@ -6,8 +6,8 @@ rule_files:
 alerting:
     alertmanagers:
     - scheme: http
-    static_configs:
-    - targets:
+      static_configs:
+      - targets:
         - "{{ prometheus_alertmanager_address }}"
 scrape_configs:
   - job_name: 'node'
