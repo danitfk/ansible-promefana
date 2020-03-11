@@ -42,20 +42,7 @@
   copy:
     src: "/tmp/alertmanager-{{ alertmanager_version }}.linux-amd64/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
-    mode: 0755
-    owner: root
-    group: root
-  with_items:
-    - alertmanager
-    - amtool
-  notify:
-    - restart alertmanager
-
-- name: propagate locally distributed alertmanager and amtool binaries
-  copy:
-    src: "{{ alertmanager_binary_local_dir }}/{{ item }}"
-    dest: "/usr/local/bin/{{ item }}"
-    mode: 0755
+    mode: "0755"
     owner: root
     group: root
   with_items:

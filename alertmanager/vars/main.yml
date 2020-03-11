@@ -1,6 +1,5 @@
 ---
 alertmanager_version: 0.20.0
-alertmanager_binary_local_dir: ''
 binary_url: https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz
 alertmanager_config_dir: /etc/alertmanager
 alertmanager_db_dir: /var/lib/alertmanager
